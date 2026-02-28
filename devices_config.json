@@ -1,0 +1,14 @@
+{
+    "Moto G Power (2021)": {
+        "ip": "192.168.68.107",
+        "last_port": "38825",
+        "button_color": "#0080ff",
+        "args": "--video-bit-rate 4M --max-size 1024"
+    },
+    "Orange Moto 2025": {
+        "ip": "192.168.68.101",
+        "last_port": "38373",
+        "button_color": "#ff8c00",
+        "args": "--video-bit-rate 8M"
+    }
+}
