@@ -14,6 +14,20 @@ scrcpy is a great program but doesn't necessarily have any type of a GUI front e
 
 Before running Win2Phone, you must install the following tools via **WinGet** to ensure the ADB engine and mirroring services are available on your system. In retrospect, I was updating my own version of the program and sometime in the future I may actually patch the master files so that it does a check and asks you if it needs to be downloaded. But for right now, you'll need to download it yourself. 
 
+## Architectural overview
+
+ADB is the magic conduit that Google created to hook up your Android phone to your PC. Specifically, it was made for developers. Most developers actually hook it up via a USB cable. However, Google did install the ability to talk to your phone wirelessly. We're going to tap into that utilizing SCRCPY on top of this to be able to bring that information back to your PC screen. 
+
+This program simply tries to automate and present this information back to you so you can keep all the current information up to date. The key part of this is all the unique factors to be able to use SCRCPY is stored inside of a JSON file. And you can manipulate that JSON file either with the program that you select to initiate communication or with another special program that will work on the JSON file itself. 
+
+Because this is a developer tool, it's got some downsides, even though it's very powerful. The first one is running the phone in this mode will drain your battery pretty quick. A matter of fact, simply having your phone in a mode where it can be utilized with SCRCPY is going to drain your battery.  So you may want to have this turned off on your phone and not run it all the time unless you happen to have a phone which is permanently plugged into a power source. 
+
+To talk from your PC to your phone, you have to keep on dealing with a series of IP addresses and port numbers. To do a refresher on the technology, IP4, which is the standard by which you'll be talking to your phone, utilizes a set of four numbers separated by periods. This gives you the address of any device on your local router. Generally, it's easy to scale to around 255 devices. However, every device not only has an IP number, but it also has various ports. This is signified by a colon with a number after it. It's basically going to an address like an apartment building, and the port happens to be the individual apartment that you need to show up at. This becomes a little confusing because there are both ports for hooking up the phone initially through a process called pairing and then another port to talk to the phone on a regular basis. 
+
+Because of security concerns, the first time a PC is introduced to a phone, you actually need to pair it. This means that you're going to get a special port on top of the phone's base IP address to be able to do a specific handshake protocol. On top of that, you'll need to put in six numbers to indicate that the PC interrogating the phone and trying to establish a relationship is the special PC with the right numbers. This turns out to only need to generally be done once when you're mating your phone with your PC. 
+
+Now because you don't want to have this running on your phone all the time you'll be switching the ADP wireless connection on and off through a tile which is described below. Unfortunately, when you turn the tile on and off, it may change the port number every time you do this. which means that you're going to have to write down the port number and update it inside of the program. Generally, if you're running it inside your household, which is where I think you should be running it, the IP address does not change. But even in this case, there may be a circumstance where your phone joins back with a different IP address and you need to take a look at it. 
+
 ### 1. Install Android Platform Tools (Optional because program will check and download it if it's not installed. )
 
 Provides the ADB engine used for pairing and wireless communication.
