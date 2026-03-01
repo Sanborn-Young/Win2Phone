@@ -28,7 +28,7 @@ Because of security concerns, the first time a PC is introduced to a phone, you 
 
 Now because you don't want to have this running on your phone all the time you'll be switching the ADP wireless connection on and off through a tile which is described below. Unfortunately, when you turn the tile on and off, it will change the port number every time you do this. which means that you're going to have to write down the new port number and update it inside of the program. Generally, if you're running it inside your household, which is where I think you should be running it, the IP address does not change but the port number does.
 
-There is a workaround for the constantly shifting port number. In the companion utility, after you've entered your phone number and you confirmed everything works okay, it is possible to then select this through when to phone adder program. In this program, you can select the phone which you've connected, then attach a USB cable, and then run the button which will hard set a port number of 5555 until you reboot your phone. More details below in the text. 
+There is a workaround for the constantly shifting port number. In the companion utility, after you've entered your phone number and you confirmed everything works okay, it is possible to then select this through when to phone adder program. In this program, you can select the phone which you've connected, then attach a USB cable, and then run the button which will hard set a port number of 5555 until you reboot your phone. More details below in the text. Now it turns out there's one other benefit of this is once you've set this up as a listening port it doesn't get turned off. So even though the wireless debug may turn off through an automatic means generally it will keep this port listening and if you tickle it through the utility you'll be able to gain access to your phone. So it's another additional step, but it provides an enormous amount of utility by hooking up the USB cable. 
 
 ### 1. Install Android Platform Tools (Optional because program will check and download it if it's not installed. )
 
@@ -161,9 +161,52 @@ The interface for modifying existing device nicknames, colors, or launch argumen
 
 One of the frustrating things about utilizing this is that phones will turn off the wireless debug function to save battery. And when they turn it off, they change the port address so that you need to not only re-enable the phone to be able to talk to your PC, but you also need to write down the new port address. It turns out that if you are willing to attach the phone with a USB cable, you can set an alternative port address of 5555, which will map on on top of whatever is the new address it sets when you re-enable the wireless tile. 
 
-I've made this so you first want to add the phone as per normal with the tool and confirm that it hooks up underneath the ordinary wireless connection. However, once you've established that everything works okay, you can return to this utility and select any phone that you have inside of the JSON in the top-level pull-down menu. 
+This is a great idea for your project documentation. Since you are using **Obsidian** to manage your files, this structured guide will fit perfectly into your `README.md` to explain the "why" and "how" behind your wireless setup.
 
-It will utilize the base IP address for the phone and use the USB cable to now set the port number to 5555, which will be stable unless you reboot the phone. Once you plug in the cable and you press the first button, it will set this port number. This port number can be used even if the tile says a different port number (see the picture below for a tile that would indicate that it has a different port number, even though you can get to it after setting it with the USB cable to 5555) and it will set the JSON to this new port number. So, if you open up the main program, it will now show the port as 5555. 
+---
+
+## 📱 Wireless ADB Connection: The "Port 5555" Method
+
+This project, **Win2Phone**, utilizes the "Classic ADB" wireless method to manage your devices without a physical tether. Below is a technical breakdown of how the wireless bridge is established and maintained.
+
+##### 1. The USB Handshake (Initial Setup)
+
+Android devices do not listen for network commands by default for security reasons. To enable wireless control, we must first "knock on the door" via a physical USB connection.
+
+* **Command**: `adb tcpip 5555`
+* **What happens**: This command tells the Android Debug Bridge (ADB) daemon on the phone to restart and listen for incoming instructions on a specific network port (5555).
+* **The Result**: Once the phone responds with "restarting in TCP mode," it is ready to accept commands over your local Wi-Fi network.
+
+##### 2. Establishing the Wi-Fi Bridge
+
+Once the port is open, you no longer need the USB cable. You can then point your computer to the phone's local IP address (e.g., your Motorola's `192.168.68.107`).
+
+* **Command**: `adb connect [PHONE_IP]:5555`
+* **Persistence**: As long as the phone remains powered on, it will continue to listen on this port.
+* **Wireless Debugging Toggle**: Because we manually set the port via USB, you do **not** need the "Wireless Debugging" toggle in Android Developer Options to be enabled for **scrcpy** to function.
+
+##### 3. Power Consumption & Efficiency
+
+A common concern is whether "listening" for a connection drains the battery.
+
+* **Idle State**: Simply having Port 5555 open uses negligible CPU resources (approx. <0.5% battery per hour).
+* **Active State**: Power drain only increases significantly during active streaming (e.g., using **scrcpy** at **8M bitrate**), as the phone's hardware must encode and transmit video data in real-time.
+
+##### 4. How to Reset the Connection
+
+Because this setting is stored in the phone's volatile memory (RAM), it is not permanent.
+
+* **Rebooting**: Restarting the phone will automatically close Port 5555 and revert the ADB daemon to USB-only mode.
+* **Manual Reset**: If you need to force the phone back to USB-only mode without rebooting, run the command `adb usb` while connected via cable.
+
+---
+
+> ##### 🛠️ Troubleshooting "Exit Status 1"
+> 
+> 
+> If the `adb tcpip 5555` command fails, it is often due to multiple devices being detected (e.g., a USB device and a "ghost" emulator). In these cases, use the **Device Manager** utility to target your specific USB Serial (e.g., `ZD222RYDKQ`) using the `-s` flag.
+
+---
 
 ![Win2Phone Adder Update](resources/AndroidDialog.png)
 ---
