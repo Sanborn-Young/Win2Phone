@@ -2,13 +2,49 @@
 
 Win2Phone is a centralized GUI designed to manage multiple Android devices using ADB (Android Debug Bridge) and `scrcpy`. This system allows for one-time pairing, persistent device management, and optimized wireless mirroring.
 
-I will say it's an absolutely fantastic program, but it doesn't have a great GUI front end and setting up the phone so it can be utilized takes a considerable amount of setup. However, once it's set up, you can simply double click on a phone and be able to bring it up inside of your Windows 11. 
+You simply click on the colored button at the front of the phone list and it will load that phone screen into Windows 11 in a new window. Due to the underlying scrcpy technology, you can operate the phone almost as if you were holding it in your hand by usage of the mouse or a touchscreen. 
 
-However, once it's set up, you simply click one of the colored launch buttons and it will launch the corresponding Android phone and bring it up in Windows 11. That is, if everything is configured right, which is a trick. 
+scrcpy is a great program but doesn't necessarily have any type of a GUI front end. The goal was to have a front end that allowed you to simply click on a button and that button would do the work of kicking off the program so it could bring up the phone screen in your PC environment. Then you can add as many buttons as you have phones. Every time you click a new phone, We do get rid of the old phone mainly because Windows has a difficult time tracking all the different ADB instances. 
+
 
 ![Win2Phone Main Screen](resources/MasterClean.png)
 
+Here is the **Prerequisites** section bundled into a clean Markdown block that you can paste directly at the top of your `README.md`.
 
+```markdown
+## 🛠 Prerequisites: Core Tools Installation
+
+Before running Win2Phone, you must install the following tools via **WinGet** to ensure the ADB engine and mirroring services are available on your system. In retrospect, I was updating my own version of the program and sometime in the future I may actually patch the master files so that it does a check and asks you if it needs to be downloaded. But for right now, you'll need to download it yourself. 
+
+### 1. Install Android Platform Tools
+
+Provides the ADB engine used for pairing and wireless communication.
+```powershell
+winget install Google.PlatformTools
+```
+
+### 2. Install Scrcpy
+
+Provides the high-performance mirroring engine that displays your phone screen on your PC.
+
+```powershell
+winget install Genymobile.scrcpy
+
+```
+
+> **Note:** Win2Phone includes a **"Self-Healing"** feature. If the app displays "ADB Status: MISSING," use the **🔄 SYNC** button within the GUI to automatically pull the necessary binaries from these global installations into your local project folder.
+
+---
+
+```
+
+
+
+This section clearly defines the "winget" commands needed to get the system running. Since your script specifically targets these installation paths during the sync process, having these installed first is the key to a successful setup.
+
+Would you like me to also provide a small update for your `Win2Phone.py` file that adds a "Check Dependencies" popup to alert users if these tools are missing?
+
+```
 ---
 
 ## Section 1: Phone Preparation (Initial Setup)
