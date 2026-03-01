@@ -119,16 +119,26 @@ Adjust the `COL_WIDTHS` list to change the spacing between elements. Lower numbe
 ## Section 6: Screenshots
 Visual guides for the Win2Phone interface and management utilities.
 
+#1:  This is where you'll probably spend the most of your time once you have it set up. In essence, as long as nothing misfires, you simply click any one of the buttons and it will bring up that phone into your Windows main desktop. If something does misfire, you should be looking at the tile on your phone and making sure it has the same web address and port number so the program knows and makes sure that it's communicating to the only port the phone will listen on. By the way, make sure that you're on a local Wi-Fi network, otherwise, it won't see it. 
+
+#2:  You shouldn't need to use this section very much. Generally, you only need to pair a phone once unless something major happens, like you power cycled phone. 
+
+#3:  This is where we check and make sure your current ADB is working correct. And as I stated in the verbiage before, if you don't have ADB, it's going to go out and pull it down. 
+
+#4:  These are some special buttons that you can try if you have your phone registered correctly and you know you have the right web address and socket. It may be that another ADB or some interference is trying to keep your ADB from communicating correctly. If for some reason neither one of these buttons work, you'll need to reboot your machine. 
+
+#5:  This gives you a little bit of a log as ADB goes out and tries to talk to your phone. If you have an issue, you may be able to go ahead and copy and then paste this into an LLM and say you're trying to communicate through ADB to a phone, but you got the following error message. 
+
 ### Win2Phone Main Interface
 The primary dashboard for managing and launching wireless Android mirroring sessions.
 ![Win2Phone Main Screen](resources/Main.png)
 
 ### Win2Phone Adder - New Device
-The utility used to register a new Android device into your configuration.
+The utility used to register a new Android device into your configuration.  You don't actually have to use this utility. You could simply open up the JSON in a text editor and update everything. However, this provides some structure and hopefully some help for you to go and modify the JSON file. 
 ![Win2Phone Adder New Device](resources/AddNew.png)
 
 ### Win2Phone Adder - Update Device
-The interface for modifying existing device nicknames, colors, or launch arguments.
+The interface for modifying existing device nicknames, colors, or launch arguments.  Why the initial screen comes up with fields that you can type over, if you hit the pull-down box, it will pull in any phone you already have loaded inside of the JSON. After you modify something, just go ahead and save it before you bring up the main program. 
 ![Win2Phone Adder Update](resources/ChangeOld.png)
 
 ---
