@@ -148,13 +148,22 @@ The primary dashboard for managing and launching wireless Android mirroring sess
 ![Win2Phone Main Screen](resources/Main.png)
 
 ### Win2Phone Adder - New Device
-The utility used to register a new Android device into your configuration.  You don't actually have to use this utility. You could simply open up the JSON in a text editor and update everything. However, this provides some structure and hopefully some help for you to go and modify the JSON file. 
+The utility used to register a new Android device into your configuration.  You don't actually have to use this utility. You could simply open up the JSON in a text editor and update everything. However, this provides some structure and hopefully some help for you to go and modify the JSON file. This section is on the first half of the box shown in the picture below. We will address what the USB function is in a second. 
 ![Win2Phone Adder New Device](resources/AddNew.png)
 
 ### Win2Phone Adder - Update Device
 The interface for modifying existing device nicknames, colors, or launch arguments.  Why the initial screen comes up with fields that you can type over, if you hit the pull-down box, it will pull in any phone you already have loaded inside of the JSON. After you modify something, just go ahead and save it before you bring up the main program. 
 ![Win2Phone Adder Update](resources/ChangeOld.png)
 
+### Win2Phone Adder - USB Cable To Set 5555 as Port for Wireless
+
+One of the frustrating things about utilizing this is that phones will turn off the wireless debug function to save battery. And when they turn it off, they change the port address so that you need to not only re-enable the phone to be able to talk to your PC, but you also need to write down the new port address. It turns out that if you are willing to attach the phone with a USB cable, you can set an alternative port address of 5555, which will map on on top of whatever is the new address it sets when you re-enable the wireless tile. 
+
+I've made this so you first want to add the phone as per normal with the tool and confirm that it hooks up underneath the ordinary wireless connection. However, once you've established that everything works okay, you can return to this utility and select any phone that you have inside of the JSON in the top-level pull-down menu. 
+
+It will utilize the base IP address for the phone and use the USB cable to now set the port number to 5555, which will be stable unless you reboot the phone. Once you plug in the cable and you press the first button, it will set this port number. This port number can be used even if the tile says a different port number (see the picture below for a tile that would indicate that it has a different port number, even though you can get to it after setting it with the USB cable to 5555) and it will set the JSON to this new port number. So, if you open up the main program, it will now show the port as 5555. 
+
+![Win2Phone Adder Update](resources/AndroidDialog.png)
 ---
 
 ## Maintenance & Troubleshooting
