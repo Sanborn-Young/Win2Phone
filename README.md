@@ -34,16 +34,6 @@ winget install Genymobile.scrcpy
 
 ---
 
-
-
-
-This section clearly defines the "winget" commands needed to get the system running. Since your script specifically targets these installation paths during the sync process, having these installed first is the key to a successful setup.
-
-Would you like me to also provide a small update for your `Win2Phone.py` file that adds a "Check Dependencies" popup to alert users if these tools are missing?
-
-```
----
-
 ## Section 1: Phone Preparation (Initial Setup)
 Before using the software, your Android device must be configured to allow wireless communication.
 
