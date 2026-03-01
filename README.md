@@ -161,6 +161,8 @@ The interface for modifying existing device nicknames, colors, or launch argumen
 
 *One of the frustrating things about utilizing this is that phones will turn off the wireless debug function to save battery. And when they turn it off, they change the port address so that you need to not only re-enable the phone to be able to talk to your PC, but you also need to write down the new port address. It turns out that if you are willing to attach the phone with a USB cable, you can set an alternative port address of 5555, which will map on on top of whatever is the new address it sets when you re-enable the wireless tile.*
 
+**The really big news and why you want to do this is that even though the wireless debug tile is off, the port stays open. That means that as long as you've set the new port with the USB cable, if you run the utility, it will bring up the phone screen regardless if the wireless debug is working or not. The theory is listed below with alternatives if you wanted to do it through the command line and these commands are bundled into the utility.**
+
 
 ---
 
