@@ -29,9 +29,6 @@ Provides the high-performance mirroring engine that displays your phone screen o
 winget install Genymobile.scrcpy
 
 ```
-
-> **Note:** Win2Phone includes a **"Self-Healing"** feature. If the app displays "ADB Status: MISSING," use the **🔄 SYNC** button within the GUI to automatically pull the necessary binaries from these global installations into your local project folder.
-
 ---
 
 ## Section 1: Phone Preparation (Initial Setup)
@@ -57,7 +54,7 @@ Before using the software, your Android device must be configured to allow wirel
 ---
 
 ## Section 2: PC Environment Setup & ADB Sync
-The Win2Phone app is designed to be "self-healing," but it relies on your PC having the official Android tools installed via WinGet.
+This is a repeat of the prerequisite section, so you're going to get it again. If you've already installed it because you've read the prerequisite, then relax. You're good to go. 
 
 1.  **Install WinGet:** Most modern Windows 10/11 systems have this by default. If not, install the "App Installer" from the Microsoft Store.
 2.  **Install Google Platform Tools:** Open PowerShell and run: `winget install Google.PlatformTools`.
