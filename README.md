@@ -14,14 +14,14 @@ scrcpy is a great program but doesn't necessarily have any type of a GUI front e
 
 Before running Win2Phone, you must install the following tools via **WinGet** to ensure the ADB engine and mirroring services are available on your system. In retrospect, I was updating my own version of the program and sometime in the future I may actually patch the master files so that it does a check and asks you if it needs to be downloaded. But for right now, you'll need to download it yourself. 
 
-### 1. Install Android Platform Tools
+### 1. Install Android Platform Tools (Optional because program will check and download it if it's not installed. )
 
 Provides the ADB engine used for pairing and wireless communication.
 ```powershell
 winget install Google.PlatformTools
 ```
 
-### 2. Install Scrcpy
+### 2. Install Scrcpy (Not optional because I don't do any check in the programs for scrcpy)
 
 Provides the high-performance mirroring engine that displays your phone screen on your PC.
 
