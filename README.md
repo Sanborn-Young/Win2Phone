@@ -2,6 +2,13 @@
 
 Win2Phone is a centralized GUI designed to manage multiple Android devices using ADB (Android Debug Bridge) and `scrcpy`. This system allows for one-time pairing, persistent device management, and optimized wireless mirroring.
 
+I will say it's an absolutely fantastic program, but it doesn't have a great GUI front end and setting up the phone so it can be utilized takes a considerable amount of setup. However, once it's set up, you can simply double click on a phone and be able to bring it up inside of your Windows 11. 
+
+However, once it's set up, you simply click one of the colored launch buttons and it will launch the corresponding Android phone and bring it up in Windows 11. That is, if everything is configured right, which is a trick. 
+
+![Win2Phone Main Screen](resources/MasterClean.png)
+
+
 ---
 
 ## Section 1: Phone Preparation (Initial Setup)
@@ -16,12 +23,13 @@ Before using the software, your Android device must be configured to allow wirel
 1.  In **Developer Options**, switch **Wireless Debugging** to **ON**.
 2.  Search for **"Quick Setting Developer Tiles"** in your phone's Settings search bar.
 3.  Enable the tile for **Wireless Debugging**.
-4.  **Accessing the Tile:** Swipe down twice from the top of your screen to see your quick settings. Tap the new **Wireless Debugging** tile.
-5.  **Pro Tip:** Long-press this tile to instantly see your device's **IP Address and Port** needed for connection.
+4.  **Accessing the Tile:** Swipe down twice from the top of your screen to see your quick settings. Tap the new **Wireless Debugging** tile. You can juggle the tiles and put them in whatever position you want. Some older Android phones may not have this ability. 
+5.  **Tip:** Long-press this tile to instantly see your device's **IP Address and Port** needed for connection.
 
 ### Phase 3: Power & Lock Settings
 1.  Search for **"Screen Lock"** in your phone settings.
 2.  Adjust **"Lock after screen timeout"** to a duration that prevents the screen from going black during active mirroring sessions.
+3.  If the screen does go black, you always have the option to use your fingerprint or face to unlock it, but you'll need the physical phone to do this. 
 
 ---
 
@@ -35,10 +43,12 @@ The Win2Phone app is designed to be "self-healing," but it relies on your PC hav
     * If you open Win2Phone and see **"ADB Status: MISSING"** in the header, click the **🔄 SYNC** button.
     * The program will automatically locate the official binaries in your WinGet folder and copy `adb.exe`, `AdbWinApi.dll`, and `AdbWinUsbApi.dll` into the program directory.
 
+Comment:  In retrospect, I just downloaded adb and the DLLs directly into the exact same subdirectory where you're running the Python script. In retrospect, it would have been cleaner to put it into its own subdirectory. Regardless, that's where it puts it. ADB is extremely fickle and making sure you have the right version and up to snuff is best. Some legacy programs may utilize ADB for some functionality and by placing it directly into the subdirectory you can make sure you have the latest greatest as I do depend upon certain functions out of the latest ADB to sync the phone. 
+
 ---
 
 ## Section 3: Solving ADB Version Conflicts
-If you encounter "unknown command" errors during pairing, an older ADB version (such as one from Touch Portal) may be hijacking your commands.
+If you encounter "unknown command" errors during pairing, an older ADB version (I had a troublesome one from Touch Portal) may be hijacking your commands.
 1.  **Identify Pathing Issues:** Check your system PATH to ensure the newer version is prioritized.
 2.  **Direct Execution:** If necessary, navigate directly to the WinGet folder.
 3.  **Force Version:** Win2Phone handles this by explicitly pointing to the `LOCAL_ADB` binaries it synchronized during setup.
@@ -46,6 +56,8 @@ If you encounter "unknown command" errors during pairing, an older ADB version (
 ---
 
 ## Section 4: Using the Win2Phone App
+
+If you look in the subdirectory, there is a JSON file. That JSON file holds all the configuration information for the programs. And so both the master program, where you toggle on and off phones, and also a helper program that allows you to add phones in, both utilizes this exact same JSON file. I have provided a sample file and for you to be able to utilize it immediately, please remove the.sample at the end and thus it will be picked up by the Python scripts. This will give you an example of some phones that you may be able to modify or update to connect your own phone. 
 
 ### 1. Adding and Editing Phones
 Use the **Win2PhoneAdder.py** utility to manage your device list (`devices_config.json`).
@@ -60,6 +72,8 @@ Pairing is only required the very first time you connect a phone to a new PC.
 2.  In Win2Phone, enter the **Pairing IP:Port** and **6-Digit Code** presented on the phone into the corresponding fields.
 3.  Click **PAIR**. Once "Successfully paired" appears in the log, the phone is trusted forever.
 
+Now forever is a really big term. Really, it's going to stay trusted as long as you don't do anything major and major may be changing the ADB, it may be rebooting your phone, it may be doing anything. You'll need to make sure that you repair if for some reason it doesn't want to connect to the main phone. But this is not a function you should need to do a lot. 
+
 ### 3. Establishing the Active Connection
 1.  Enable **Wireless Debugging** on your phone.
 2.  Verify the **Main IP** and **Main Port** in Win2Phone match your phone's current display (this port changes frequently).
@@ -69,6 +83,8 @@ Pairing is only required the very first time you connect a phone to a new PC.
 
 ## Section 5: Advanced Customization
 You can "live-tune" the interface by editing the variables at the top of **Win2Phone.py**.
+
+I use Tkinter, and it doesn't always do exactly what I want. Therefore there's these variables up top that should allow you to nudge the text any which way if you decide to change the raw Python code. 
 
 ### Alignment Nudging
 If headers do not line up perfectly with the boxes below them, adjust the `HEADER_NUDGE` dictionary:
@@ -85,15 +101,15 @@ Visual guides for the Win2Phone interface and management utilities.
 
 ### Win2Phone Main Interface
 The primary dashboard for managing and launching wireless Android mirroring sessions.
-![Win2Phone Main Screen](resources/Win2Phone%20Main%20Scrren.png)
+![Win2Phone Main Screen](resources/Main.png)
 
 ### Win2Phone Adder - New Device
 The utility used to register a new Android device into your configuration.
-![Win2Phone Adder New Device](resources/Win2PhoneAdderNew.png)
+![Win2Phone Adder New Device](resources/AddNew.png)
 
 ### Win2Phone Adder - Update Device
 The interface for modifying existing device nicknames, colors, or launch arguments.
-![Win2Phone Adder Update](resources/Win2PhoneAdderUpdate.png)
+![Win2Phone Adder Update](resources/ChangeOld.png)
 
 ---
 
