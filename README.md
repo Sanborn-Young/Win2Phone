@@ -160,9 +160,6 @@ The interface for modifying existing device nicknames, colors, or launch argumen
 ### Win2Phone Adder - USB Cable To Set 5555 as Port for Wireless
 
 One of the frustrating things about utilizing this is that phones will turn off the wireless debug function to save battery. And when they turn it off, they change the port address so that you need to not only re-enable the phone to be able to talk to your PC, but you also need to write down the new port address. It turns out that if you are willing to attach the phone with a USB cable, you can set an alternative port address of 5555, which will map on on top of whatever is the new address it sets when you re-enable the wireless tile. 
-
-This is a great idea for your project documentation. Since you are using **Obsidian** to manage your files, this structured guide will fit perfectly into your `README.md` to explain the "why" and "how" behind your wireless setup.
-
 ---
 
 ## 📱 Wireless ADB Connection: The "Port 5555" Method
